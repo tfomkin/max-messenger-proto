@@ -1,0 +1,137 @@
+.shell {
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  min-height: 0;
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px 8px;
+}
+
+.appName {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.sidebarHint {
+  margin: 2px 0 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.ghostBtn {
+  border: 1px solid var(--border);
+  background: transparent;
+  border-radius: 10px;
+  padding: 8px 12px;
+  color: var(--text-muted);
+}
+
+.ghostBtn:hover {
+  color: var(--text);
+  background: var(--surface-muted);
+}
+
+.newChatBtn {
+  margin: 8px 16px 12px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.newChatBtn:hover {
+  background: var(--accent-hover);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background:
+    linear-gradient(180deg, #f7f8fa 0%, #eef1f5 100%);
+}
+
+.chatHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.backBtn {
+  display: none;
+  border: none;
+  background: transparent;
+  font-size: 1.25rem;
+  padding: 4px 8px;
+  color: var(--text);
+}
+
+.chatTitle {
+  margin: 0;
+  font-weight: 600;
+}
+
+.chatSubtitle {
+  margin: 2px 0 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.empty {
+  margin: auto;
+  text-align: center;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.empty .newChatBtn {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebarHidden {
+    display: none;
+  }
+
+  .main {
+    display: none;
+  }
+
+  .mainVisible {
+    display: flex;
+  }
+
+  .backBtn {
+    display: inline-flex;
+  }
+}
