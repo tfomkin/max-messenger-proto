@@ -1,4 +1,4 @@
-import { useState, type FormEvent, type KeyboardEvent } from 'react'
+import { useState, type KeyboardEvent, type SubmitEvent } from 'react'
 import { useChatStore } from '@/store/chatStore'
 import styles from './MessageInput.module.css'
 
@@ -21,7 +21,7 @@ export function MessageInput() {
     }
   }
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = (event: SubmitEvent) => {
     event.preventDefault()
     void submit()
   }

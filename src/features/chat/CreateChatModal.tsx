@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useState, type SubmitEvent } from 'react'
 import { checkAccount } from '@/shared/api/green-api'
 import {
   formatPhoneDisplay,
@@ -55,7 +55,7 @@ export function CreateChatModal({ onClose, onCreated }: Props) {
     }
   }
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = (event: SubmitEvent) => {
     event.preventDefault()
     void submit()
   }

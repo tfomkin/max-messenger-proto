@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useState, type SubmitEvent } from 'react'
 import { ValidationError } from 'yup'
 import { useChatStore } from '@/store/chatStore'
 import formStyles from '@/shared/ui/form.module.css'
@@ -46,7 +46,7 @@ export function LoginPage() {
     }
   }
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = (event: SubmitEvent) => {
     event.preventDefault()
     void submit()
   }
