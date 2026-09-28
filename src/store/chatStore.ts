@@ -145,7 +145,12 @@ export const useChatStore = create<ChatState>()(
     {
       name: 'max-messenger-auth',
       storage: createJSONStorage(() => localStorage),
-      partialize: (state) => ({ credentials: state.credentials }),
+      partialize: (state) => ({
+        credentials: state.credentials,
+        chats: state.chats,
+        activeChatId: state.activeChatId,
+        messagesByChatId: state.messagesByChatId,
+      }),
     },
   ),
 )

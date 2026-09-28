@@ -81,6 +81,91 @@ describe('chatStore', () => {
     })
   })
 
+  it('persists chats and messages to localStorage without ephemeral fields', () => {
+    useChatStore.getState().login({
+      idInstance: '111',
+      apiTokenInstance: 'token',
+      apiUrl: 'https://api.green-api.com',
+    })
+    useChatStore.getState().addChat({
+      chatId: 'c1',
+      phone: '79991234567',
+      name: 'Alice',
+    })
+    useChatStore.getState().appendMessage({
+      id: 'm1',
+      chatId: 'c1',
+      text: 'hello',
+      direction: 'out',
+      timestamp: 1,
+    })
+    useChatStore.setState({ isSending: true, sendError: 'err' })
+
+    const raw = localStorage.getItem('max-messenger-auth')
+    expect(raw).toBeTruthy()
+    const persisted = JSON.parse(raw!) as {
+      state: Record<string, unknown>
+    }
+
+    expect(persisted.state).toMatchObject({
+      credentials: {
+        idInstance: '111',
+        apiTokenInstance: 'token',
+        apiUrl: 'https://api.green-api.com',
+      },
+      chats: [{ chatId: 'c1', phone: '79991234567', name: 'Alice' }],
+      activeChatId: 'c1',
+      messagesByChatId: {
+        c1: [
+          {
+            id: 'm1',
+            chatId: 'c1',
+            text: 'hello',
+            direction: 'out',
+            timestamp: 1,
+          },
+        ],
+      },
+    })
+    expect(persisted.state).not.toHaveProperty('isSending')
+    expect(persisted.state).not.toHaveProperty('sendError')
+  })
+
+  it('logout clears chats and messages from localStorage', () => {
+    useChatStore.getState().login({
+      idInstance: '111',
+      apiTokenInstance: 'token',
+      apiUrl: 'https://api.green-api.com',
+    })
+    useChatStore.getState().addChat({
+      chatId: 'c1',
+      phone: '79991234567',
+      name: 'Alice',
+    })
+    useChatStore.getState().appendMessage({
+      id: 'm1',
+      chatId: 'c1',
+      text: 'hello',
+      direction: 'out',
+      timestamp: 1,
+    })
+
+    useChatStore.getState().logout()
+
+    const raw = localStorage.getItem('max-messenger-auth')
+    expect(raw).toBeTruthy()
+    const persisted = JSON.parse(raw!) as {
+      state: Record<string, unknown>
+    }
+
+    expect(persisted.state).toMatchObject({
+      credentials: null,
+      chats: [],
+      activeChatId: null,
+      messagesByChatId: {},
+    })
+  })
+
   it('addChat prepends and sets active; duplicate only switches active', () => {
     const chatA = { chatId: 'a', phone: '1', name: 'A' }
     const chatB = { chatId: 'b', phone: '2', name: 'B' }
