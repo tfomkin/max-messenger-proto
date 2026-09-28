@@ -6,10 +6,7 @@ vi.mock('@/shared/api/green-api', () => ({
   deleteNotification: vi.fn(),
 }))
 
-import {
-  deleteNotification,
-  receiveNotification,
-} from '@/shared/api/green-api'
+import { deleteNotification, receiveNotification } from '@/shared/api/green-api'
 import { useChatStore } from '@/store/chatStore'
 import {
   startNotificationPolling,

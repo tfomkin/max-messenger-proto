@@ -67,8 +67,7 @@
   flex-direction: column;
   min-width: 0;
   min-height: 0;
-  background:
-    linear-gradient(180deg, #f7f8fa 0%, #eef1f5 100%);
+  background: linear-gradient(180deg, #f7f8fa 0%, #eef1f5 100%);
 }
 
 .chatHeader {

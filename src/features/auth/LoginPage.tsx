@@ -32,8 +32,7 @@ export function LoginPage() {
   })
   const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault()
+  const submit = async () => {
     try {
       const validated = await loginSchema.validate(values, { abortEarly: true })
       setError(null)
@@ -45,6 +44,11 @@ export function LoginPage() {
       }
       throw err
     }
+  }
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault()
+    void submit()
   }
 
   return (

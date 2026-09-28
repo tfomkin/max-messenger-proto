@@ -21,8 +21,7 @@ export function CreateChatModal({ onClose, onCreated }: Props) {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault()
+  const submit = async () => {
     if (!credentials) {
       return
     }
@@ -50,12 +49,15 @@ export function CreateChatModal({ onClose, onCreated }: Props) {
       onCreated()
       onClose()
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : 'Не удалось создать чат',
-      )
+      setError(err instanceof Error ? err.message : 'Не удалось создать чат')
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault()
+    void submit()
   }
 
   return (

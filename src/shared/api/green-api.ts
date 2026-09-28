@@ -33,10 +33,7 @@ async function parseJson<T>(response: Response): Promise<T> {
   return JSON.parse(text) as T
 }
 
-async function request<T>(
-  url: string,
-  init?: RequestInit,
-): Promise<T> {
+async function request<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, init)
   return parseJson<T>(response)
 }

@@ -6,10 +6,7 @@ export const loginSchema = yup.object({
     .trim()
     .required('Введите idInstance')
     .matches(/^\d+$/, 'idInstance должен содержать только цифры'),
-  apiTokenInstance: yup
-    .string()
-    .trim()
-    .required('Введите apiTokenInstance'),
+  apiTokenInstance: yup.string().trim().required('Введите apiTokenInstance'),
   apiUrl: yup
     .string()
     .trim()

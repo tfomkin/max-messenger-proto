@@ -1,7 +1,4 @@
-import {
-  deleteNotification,
-  receiveNotification,
-} from '@/shared/api/green-api'
+import { deleteNotification, receiveNotification } from '@/shared/api/green-api'
 import { formatPhoneDisplay } from '@/shared/lib/phone'
 import type { Credentials, IncomingWebhookBody } from '@/shared/types'
 import { useChatStore } from '@/store/chatStore'

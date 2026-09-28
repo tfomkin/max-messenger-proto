@@ -34,9 +34,9 @@ afterEach(() => {
 
 describe('green-api', () => {
   it('checkAccount posts to stripped base URL', async () => {
-    const fetchMock = vi.fn().mockResolvedValue(
-      jsonResponse({ exist: true, chatId: '7999@c.us' }),
-    )
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValue(jsonResponse({ exist: true, chatId: '7999@c.us' }))
     vi.stubGlobal('fetch', fetchMock)
 
     const result = await checkAccount(credentials, 79991234567)
@@ -83,16 +83,16 @@ describe('green-api', () => {
   })
 
   it('receiveNotification returns null for empty body', async () => {
-    const fetchMock = vi.fn().mockResolvedValue(new Response('', { status: 200 }))
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValue(new Response('', { status: 200 }))
     vi.stubGlobal('fetch', fetchMock)
 
     await expect(receiveNotification(credentials)).resolves.toBeNull()
   })
 
   it('deleteNotification uses receipt id suffix', async () => {
-    const fetchMock = vi
-      .fn()
-      .mockResolvedValue(jsonResponse({ result: true }))
+    const fetchMock = vi.fn().mockResolvedValue(jsonResponse({ result: true }))
     vi.stubGlobal('fetch', fetchMock)
 
     const result = await deleteNotification(credentials, 42)
@@ -105,9 +105,11 @@ describe('green-api', () => {
   })
 
   it('throws with JSON message on non-OK response', async () => {
-    const fetchMock = vi.fn().mockResolvedValue(
-      jsonResponse({ message: 'Unauthorized' }, { status: 401 }),
-    )
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValue(
+        jsonResponse({ message: 'Unauthorized' }, { status: 401 }),
+      )
     vi.stubGlobal('fetch', fetchMock)
 
     await expect(checkAccount(credentials, 1)).rejects.toThrow('Unauthorized')
@@ -119,7 +121,9 @@ describe('green-api', () => {
       .mockResolvedValue(new Response('gateway timeout', { status: 504 }))
     vi.stubGlobal('fetch', fetchMock)
 
-    await expect(checkAccount(credentials, 1)).rejects.toThrow('gateway timeout')
+    await expect(checkAccount(credentials, 1)).rejects.toThrow(
+      'gateway timeout',
+    )
   })
 
   it('throws HTTP status when error body is empty', async () => {

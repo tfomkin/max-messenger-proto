@@ -14,9 +14,7 @@ function formatTime(timestamp: number): string {
 }
 
 export function MessageList({ chatId }: Props) {
-  const messages = useChatStore(
-    (state) => state.messagesByChatId[chatId] ?? [],
-  )
+  const messages = useChatStore((state) => state.messagesByChatId[chatId] ?? [])
   const bottomRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -37,7 +35,9 @@ export function MessageList({ chatId }: Props) {
           >
             <div className={styles.bubble}>
               <p className={styles.text}>{message.text}</p>
-              <time className={styles.time}>{formatTime(message.timestamp)}</time>
+              <time className={styles.time}>
+                {formatTime(message.timestamp)}
+              </time>
             </div>
           </div>
         ))

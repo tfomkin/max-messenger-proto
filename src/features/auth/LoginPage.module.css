@@ -4,8 +4,7 @@
   place-items: center;
   padding: 24px;
   background:
-    radial-gradient(ellipse at top, #e8f0fe 0%, transparent 55%),
-    var(--bg);
+    radial-gradient(ellipse at top, #e8f0fe 0%, transparent 55%), var(--bg);
 }
 
 .card {
